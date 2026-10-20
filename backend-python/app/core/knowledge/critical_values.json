@@ -1,0 +1,125 @@
+{
+  "_note": "Illustrative panic-value thresholds for a student project. They MUST be reviewed and approved by a qualified clinician before any real-world use.",
+  "Hemoglobin": [
+    {
+      "units": [
+        "g/dl",
+        "gm/dl",
+        "g%"
+      ],
+      "low": 7.0,
+      "high": 20.0
+    }
+  ],
+  "Hematocrit": [
+    {
+      "units": [
+        "%"
+      ],
+      "low": 20.0,
+      "high": 60.0
+    }
+  ],
+  "WBC": [
+    {
+      "units": [
+        "10^3/ul",
+        "x10^3/ul",
+        "10³/ul",
+        "thou/mm3",
+        "thou/ul",
+        "k/ul",
+        "10^9/l",
+        "x10^9/l",
+        "10^3/cumm",
+        "x10^3/cumm",
+        "10^3/mm3"
+      ],
+      "low": 2.0,
+      "high": 30.0
+    },
+    {
+      "units": [
+        "/cumm",
+        "cells/cumm",
+        "/cu.mm",
+        "cells/cu.mm",
+        "/mm3",
+        "cells/mm3",
+        "/ul",
+        "cells/ul"
+      ],
+      "low": 2000,
+      "high": 30000
+    }
+  ],
+  "Platelets": [
+    {
+      "units": [
+        "10^3/ul",
+        "x10^3/ul",
+        "10³/ul",
+        "thou/mm3",
+        "thou/ul",
+        "k/ul",
+        "10^9/l",
+        "x10^9/l",
+        "10^3/cumm",
+        "x10^3/cumm",
+        "10^3/mm3"
+      ],
+      "low": 20.0,
+      "high": 1000.0
+    },
+    {
+      "units": [
+        "/cumm",
+        "cells/cumm",
+        "/cu.mm",
+        "cells/cu.mm",
+        "/mm3",
+        "cells/mm3",
+        "/ul",
+        "cells/ul"
+      ],
+      "low": 20000,
+      "high": 1000000
+    }
+  ],
+  "Fasting Glucose": [
+    {
+      "units": [
+        "mg/dl"
+      ],
+      "low": 40.0,
+      "high": 400.0
+    }
+  ],
+  "Random Glucose": [
+    {
+      "units": [
+        "mg/dl"
+      ],
+      "low": 40.0,
+      "high": 500.0
+    }
+  ],
+  "Triglycerides": [
+    {
+      "units": [
+        "mg/dl"
+      ],
+      "low": null,
+      "high": 1000.0
+    }
+  ],
+  "Creatinine": [
+    {
+      "units": [
+        "mg/dl"
+      ],
+      "low": null,
+      "high": 10.0
+    }
+  ]
+}

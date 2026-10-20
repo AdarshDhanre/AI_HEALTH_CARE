@@ -1,0 +1,13 @@
+{
+  "app": "MediCase-AI",
+  "nav": { "dashboard": "Dashboard", "patients": "Patients", "users": "Users", "analytics": "Analytics", "logout": "Logout" },
+  "common": { "loading": "Loading...", "save": "Save", "cancel": "Cancel", "edit": "Edit", "back": "Back", "name": "Name", "date": "Date", "none": "Nothing here yet.", "error": "Something went wrong" },
+  "auth": { "login": "Login", "signup": "Sign up", "email": "Email", "password": "Password", "fullName": "Full name", "role": "I am a", "doctor": "Doctor / Practitioner", "patient": "Patient", "researcher": "Researcher", "noAccount": "No account?", "haveAccount": "Already have an account?" },
+  "patient": { "register": "Register patient", "dob": "Date of birth", "gender": "Gender", "phone": "Phone", "diet": "Diet preference", "veg": "Vegetarian", "nonveg": "Non-vegetarian", "vegan": "Vegan", "language": "Preferred language", "case": "Case-taking", "reports": "Reports", "history": "History & trends" },
+  "case": { "chief": "Chief complaint", "symptoms": "Symptoms", "history": "Past medical history", "lifestyle": "Lifestyle (diet, sleep, activity)", "notes": "Notes", "ayush": "AYUSH details", "prakriti": "Prakriti", "agni": "Agni (digestion)", "koshtha": "Koshtha (bowel habit)", "nidra": "Nidra (sleep)", "missing": "Still missing", "saved": "Case saved" },
+  "report": { "upload": "Upload report", "drop": "Drag & drop a PDF/JPG/PNG here, or click to choose", "test": "Test", "value": "Value", "unit": "Unit", "range": "Reference range", "status": "Status", "summary": "Plain-language summary", "guidance": "General food & lifestyle guidance", "confirm": "Confirm report", "confirmed": "Reviewed by practitioner", "needsReview": "Needs review", "failed": "Processing failed", "foods": "Foods that may help", "tips": "Tips" },
+  "trend": { "pick": "Choose a test", "compare": "Latest vs previous", "previous": "Previous", "current": "Current" },
+  "admin": { "active": "Active", "deactivate": "Deactivate", "activate": "Activate" },
+  "research": { "note": "Aggregated, anonymised data. Groups smaller than {{n}} are hidden.", "patients": "Patients", "reports": "Reports" },
+  "disclaimer": "This is for general understanding only. It is not a diagnosis or prescription. Please consult a qualified doctor."
+}

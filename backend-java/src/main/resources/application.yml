@@ -1,0 +1,45 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: medicase
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/medicase}
+    username: ${DB_USER:medicase}
+    password: ${DB_PASSWORD:medicase123}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate          # schema is owned by Flyway (db/migration)
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 12MB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+medicase:
+  jwt:
+    secret: ${JWT_SECRET:change-this-secret-key-at-least-32-characters-long!!}
+    expiration-minutes: 480
+  ai:
+    base-url: ${AI_SERVICE_URL:http://localhost:8000}
+    api-key: ${AI_INTERNAL_API_KEY:change-me-internal-key}
+    timeout-seconds: 120
+  storage:
+    path: ${STORAGE_PATH:../storage/uploads}
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+  admin:
+    email: ${ADMIN_EMAIL:admin@medicase.local}
+    password: ${ADMIN_PASSWORD:Admin@12345}
+  research:
+    min-group-size: 3             # groups smaller than this are hidden from researchers
