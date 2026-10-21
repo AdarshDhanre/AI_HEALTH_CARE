@@ -43,6 +43,10 @@ def match_test(line: str) -> Optional[tuple[str, str, str]]:
 def parse_line(line: str) -> Optional[dict]:
     m = match_test(line.strip())
     if not m:
+        cleaned = re.sub(r"^[\s\d|~)\-.:?#*]+\s*", "", line)
+        if cleaned != line.strip():
+            m = match_test(cleaned)
+    if not m:
         return None
     canonical, raw, rest = m
     v = VALUE_RE.match(rest)

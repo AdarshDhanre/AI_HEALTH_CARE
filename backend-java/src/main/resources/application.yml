@@ -43,3 +43,6 @@ medicase:
     password: ${ADMIN_PASSWORD:Admin@12345}
   research:
     min-group-size: 3             # groups smaller than this are hidden from researchers
+  ayushman:
+    ocr-url: ${AYUSHMAN_OCR_URL:http://127.0.0.1:8001}
+    timeout-seconds: 60

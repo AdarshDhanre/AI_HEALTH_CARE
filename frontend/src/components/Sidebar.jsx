@@ -9,6 +9,7 @@ export default function Sidebar() {
   const items = [
     clinical && { to: '/', label: t('nav.dashboard'), end: true },
     clinical && { to: '/patients', label: t('nav.patients') },
+    clinical && { to: '/ayushman-scanner', label: 'Ayushman Card Scanner' },
     user?.role === 'ADMIN' && { to: '/admin/users', label: t('nav.users') },
     (user?.role === 'RESEARCHER' || user?.role === 'ADMIN') && { to: '/research', label: t('nav.analytics') },
   ].filter(Boolean)

@@ -62,6 +62,14 @@ public class GlobalExceptionHandler {
         return body(HttpStatus.BAD_GATEWAY, e.getMessage());
     }
 
+    @ExceptionHandler(org.springframework.web.server.ResponseStatusException.class)
+    public ResponseEntity<Map<String, Object>> responseStatus(org.springframework.web.server.ResponseStatusException e) {
+        return ResponseEntity.status(e.getStatusCode()).body(Map.of(
+                "status", e.getStatusCode().value(),
+                "message", e.getReason() != null ? e.getReason() : (e.getMessage() != null ? e.getMessage() : "Request failed"),
+                "timestamp", Instant.now().toString()));
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> generic(Exception e) {
         log.error("Unhandled error", e);
