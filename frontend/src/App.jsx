@@ -15,6 +15,7 @@ import PatientHistory from './pages/PatientHistory'
 import UserManagement from './pages/admin/UserManagement'
 import Analytics from './pages/research/Analytics'
 import AyushmanScanner from './pages/AyushmanScanner'
+import AadhaarScanner from './pages/AadhaarScanner'
 
 function Layout() {
   return (
@@ -50,6 +51,7 @@ export default function App() {
         <Route path="/patients/:id/reports" element={<ProtectedRoute roles={CLINICAL}><Reports /></ProtectedRoute>} />
         <Route path="/patients/:id/history" element={<ProtectedRoute roles={CLINICAL}><PatientHistory /></ProtectedRoute>} />
         <Route path="/ayushman-scanner" element={<ProtectedRoute roles={CLINICAL}><AyushmanScanner /></ProtectedRoute>} />
+        <Route path="/aadhaar-scanner" element={<ProtectedRoute roles={CLINICAL}><AadhaarScanner /></ProtectedRoute>} />
         <Route path="/reports/:id" element={<ProtectedRoute roles={CLINICAL}><ReportReview /></ProtectedRoute>} />
         <Route path="/admin/users" element={<ProtectedRoute roles={['ADMIN']}><UserManagement /></ProtectedRoute>} />
         <Route path="/research" element={<ProtectedRoute roles={['RESEARCHER', 'ADMIN']}><Analytics /></ProtectedRoute>} />
