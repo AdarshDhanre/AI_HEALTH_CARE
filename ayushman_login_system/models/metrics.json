@@ -1,0 +1,6 @@
+{
+  "accuracy_on_synthetic_holdout": 1.0,
+  "train_rows": 540,
+  "test_rows": 180,
+  "warning": "Synthetic-only metrics do not predict performance on real cards."
+}
