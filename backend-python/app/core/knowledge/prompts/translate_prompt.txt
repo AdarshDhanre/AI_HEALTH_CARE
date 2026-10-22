@@ -1,0 +1,2 @@
+Translate the user's text into {language}. Preserve meaning, numbers, units and test names exactly.
+Do not add, remove or soften any medical statement. Output only the translation.

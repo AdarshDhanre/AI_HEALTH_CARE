@@ -1,0 +1,177 @@
+{
+  "Hemoglobin": [
+    "hemoglobin",
+    "haemoglobin",
+    "hb",
+    "hgb",
+    "hemoglobin (hb)",
+    "haemoglobin (hb)",
+    "hb (hemoglobin)",
+    "hemoglobin hb"
+  ],
+  "WBC": [
+    "wbc",
+    "wbc count",
+    "total wbc count",
+    "total leucocyte count",
+    "total leukocyte count",
+    "tlc",
+    "white blood cell count",
+    "white blood cells",
+    "total wbc"
+  ],
+  "RBC": [
+    "rbc",
+    "rbc count",
+    "total rbc count",
+    "red blood cell count",
+    "red blood cells",
+    "total rbc"
+  ],
+  "Platelets": [
+    "platelet count",
+    "platelets",
+    "plt",
+    "platelet",
+    "platelets count"
+  ],
+  "Hematocrit": [
+    "hematocrit",
+    "haematocrit",
+    "hct",
+    "pcv",
+    "packed cell volume",
+    "hematocrit (hct)",
+    "haematocrit (pcv)"
+  ],
+  "MCV": [
+    "mcv",
+    "mean corpuscular volume"
+  ],
+  "MCH": [
+    "mch",
+    "mean corpuscular hemoglobin",
+    "mean corpuscular haemoglobin"
+  ],
+  "MCHC": [
+    "mchc",
+    "mean corpuscular hemoglobin concentration"
+  ],
+  "Fasting Glucose": [
+    "fasting glucose",
+    "glucose fasting",
+    "glucose (fasting)",
+    "fasting blood sugar",
+    "fbs",
+    "fasting blood glucose",
+    "blood glucose fasting",
+    "fasting plasma glucose",
+    "fpg",
+    "blood sugar fasting",
+    "blood sugar (fasting)",
+    "glucose fasting (f)"
+  ],
+  "Random Glucose": [
+    "random glucose",
+    "glucose random",
+    "random blood sugar",
+    "rbs",
+    "glucose (random)",
+    "blood sugar random",
+    "blood glucose random"
+  ],
+  "Post-prandial Glucose": [
+    "post prandial glucose",
+    "postprandial glucose",
+    "glucose pp",
+    "ppbs",
+    "glucose post prandial",
+    "blood sugar pp",
+    "post prandial blood sugar"
+  ],
+  "HbA1c": [
+    "hba1c",
+    "glycosylated hemoglobin",
+    "glycated hemoglobin",
+    "glycosylated haemoglobin",
+    "a1c",
+    "hb a1c",
+    "hba1c (glycosylated hemoglobin)",
+    "glyco hemoglobin"
+  ],
+  "Total Cholesterol": [
+    "total cholesterol",
+    "cholesterol total",
+    "cholesterol",
+    "serum cholesterol",
+    "cholesterol - total"
+  ],
+  "Triglycerides": [
+    "triglycerides",
+    "triglyceride",
+    "tg",
+    "serum triglycerides"
+  ],
+  "HDL Cholesterol": [
+    "hdl cholesterol",
+    "hdl",
+    "hdl-c",
+    "hdl cholesterol (direct)",
+    "hdl cholesterol direct",
+    "cholesterol hdl",
+    "hdl-cholesterol"
+  ],
+  "LDL Cholesterol": [
+    "ldl cholesterol",
+    "ldl",
+    "ldl-c",
+    "ldl cholesterol (direct)",
+    "ldl cholesterol direct",
+    "ldl cholesterol (calculated)",
+    "cholesterol ldl",
+    "ldl-cholesterol"
+  ],
+  "VLDL Cholesterol": [
+    "vldl cholesterol",
+    "vldl",
+    "vldl-c",
+    "vldl cholesterol (calculated)"
+  ],
+  "Vitamin B12": [
+    "vitamin b12",
+    "vitamin b-12",
+    "vit b12",
+    "vit b-12",
+    "cyanocobalamin",
+    "b12",
+    "vitamin b 12",
+    "serum vitamin b12"
+  ],
+  "Vitamin D": [
+    "vitamin d",
+    "25-oh vitamin d",
+    "25 hydroxy vitamin d",
+    "25-hydroxy vitamin d",
+    "vitamin d 25 hydroxy",
+    "vitamin d3",
+    "25(oh) vitamin d",
+    "vitamin d total",
+    "vitamin d, 25 - hydroxy",
+    "25 oh vitamin d"
+  ],
+  "TSH": [
+    "tsh",
+    "thyroid stimulating hormone",
+    "tsh (ultrasensitive)",
+    "thyroid stimulating hormone (tsh)",
+    "tsh ultrasensitive",
+    "tsh - ultrasensitive",
+    "s. tsh"
+  ],
+  "Creatinine": [
+    "creatinine",
+    "serum creatinine",
+    "s. creatinine",
+    "creatinine serum"
+  ]
+}

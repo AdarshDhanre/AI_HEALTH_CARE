@@ -1,0 +1,46 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: medicase
+      POSTGRES_USER: ${DB_USER:-medicase}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-medicase123}
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-medicase} -d medicase"]
+      interval: 5s
+      retries: 10
+
+  ai-service:
+    build: ./backend-python
+    environment:
+      INTERNAL_API_KEY: ${AI_INTERNAL_API_KEY:-change-me-internal-key}
+      LLM_PROVIDER: ${LLM_PROVIDER:-none}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}
+    # not published to the host: only the Java backend may reach it
+    expose: ["8000"]
+
+  backend:
+    build: ./backend-java
+    depends_on:
+      db: { condition: service_healthy }
+      ai-service: { condition: service_started }
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/medicase
+      DB_USER: ${DB_USER:-medicase}
+      DB_PASSWORD: ${DB_PASSWORD:-medicase123}
+      JWT_SECRET: ${JWT_SECRET:-change-this-secret-key-at-least-32-characters-long!!}
+      AI_SERVICE_URL: http://ai-service:8000
+      AI_INTERNAL_API_KEY: ${AI_INTERNAL_API_KEY:-change-me-internal-key}
+      STORAGE_PATH: /data/uploads
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@medicase.local}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-Admin@12345}
+    volumes: [./storage/uploads:/data/uploads]
+    ports: ["8080:8080"]
+
+volumes:
+  pgdata:

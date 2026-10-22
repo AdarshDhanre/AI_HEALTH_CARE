@@ -1,0 +1,794 @@
+{
+  "foods": {
+    "spinach": {
+      "diet": "vegan",
+      "name": {
+        "en": "Spinach and other leafy greens",
+        "hi": "पालक और अन्य हरी पत्तेदार सब्जियाँ",
+        "mr": "पालक आणि इतर पालेभाज्या"
+      }
+    },
+    "lentils": {
+      "diet": "vegan",
+      "name": {
+        "en": "Lentils and pulses (dal)",
+        "hi": "दालें",
+        "mr": "डाळी"
+      }
+    },
+    "rajma": {
+      "diet": "vegan",
+      "name": {
+        "en": "Kidney beans (rajma) and chickpeas",
+        "hi": "राजमा और चना",
+        "mr": "राजमा आणि हरभरा"
+      }
+    },
+    "jaggery_dates": {
+      "diet": "vegan",
+      "name": {
+        "en": "Dates, raisins and jaggery (in moderation)",
+        "hi": "खजूर, किशमिश और गुड़ (सीमित मात्रा में)",
+        "mr": "खजूर, मनुका आणि गूळ (मर्यादित प्रमाणात)"
+      }
+    },
+    "pomegranate": {
+      "diet": "vegan",
+      "name": {
+        "en": "Pomegranate and beetroot",
+        "hi": "अनार और चुकंदर",
+        "mr": "डाळिंब आणि बीट"
+      }
+    },
+    "citrus": {
+      "diet": "vegan",
+      "name": {
+        "en": "Citrus fruits and amla (vitamin C sources)",
+        "hi": "नींबू, संतरा और आंवला (विटामिन C के स्रोत)",
+        "mr": "लिंबू, संत्री आणि आवळा (व्हिटॅमिन C चे स्रोत)"
+      }
+    },
+    "eggs": {
+      "diet": "nonveg",
+      "name": {
+        "en": "Eggs",
+        "hi": "अंडे",
+        "mr": "अंडी"
+      }
+    },
+    "fish": {
+      "diet": "nonveg",
+      "name": {
+        "en": "Fish",
+        "hi": "मछली",
+        "mr": "मासे"
+      }
+    },
+    "chicken": {
+      "diet": "nonveg",
+      "name": {
+        "en": "Lean chicken",
+        "hi": "चिकन (कम वसा वाला)",
+        "mr": "चिकन (कमी चरबीचे)"
+      }
+    },
+    "fatty_fish": {
+      "diet": "nonveg",
+      "name": {
+        "en": "Fatty fish (e.g. sardine, mackerel)",
+        "hi": "वसायुक्त मछली (जैसे सार्डिन, मैकेरल)",
+        "mr": "तेलकट मासे (उदा. सार्डिन, बांगडा)"
+      }
+    },
+    "milk_curd": {
+      "diet": "vegetarian",
+      "name": {
+        "en": "Milk, curd (dahi) and paneer",
+        "hi": "दूध, दही और पनीर",
+        "mr": "दूध, दही आणि पनीर"
+      }
+    },
+    "fortified": {
+      "diet": "vegan",
+      "name": {
+        "en": "Fortified cereals or plant milks",
+        "hi": "फोर्टिफाइड अनाज या पौधों से बने दूध",
+        "mr": "फोर्टिफाइड तृणधान्ये किंवा वनस्पती-आधारित दूध"
+      }
+    },
+    "whole_grains": {
+      "diet": "vegan",
+      "name": {
+        "en": "Whole grains (oats, millets, brown rice)",
+        "hi": "साबुत अनाज (ओट्स, बाजरा/ज्वार, ब्राउन राइस)",
+        "mr": "संपूर्ण धान्य (ओट्स, बाजरी/ज्वारी, ब्राउन राईस)"
+      }
+    },
+    "fruits_veg": {
+      "diet": "vegan",
+      "name": {
+        "en": "A variety of vegetables and fruits",
+        "hi": "तरह-तरह की सब्जियाँ और फल",
+        "mr": "विविध भाज्या आणि फळे"
+      }
+    },
+    "nuts": {
+      "diet": "vegan",
+      "name": {
+        "en": "Nuts such as almonds and walnuts (a small handful)",
+        "hi": "बादाम और अखरोट जैसे मेवे (एक छोटी मुट्ठी)",
+        "mr": "बदाम व अक्रोड यांसारखा सुकामेवा (लहान मूठभर)"
+      }
+    },
+    "flax": {
+      "diet": "vegan",
+      "name": {
+        "en": "Flaxseed (alsi) and chia seeds",
+        "hi": "अलसी और चिया बीज",
+        "mr": "जवस आणि चिया बिया"
+      }
+    },
+    "methi": {
+      "diet": "vegan",
+      "name": {
+        "en": "Fenugreek (methi) seeds and leaves",
+        "hi": "मेथी के बीज और पत्तियाँ",
+        "mr": "मेथीच्या बिया आणि पाने"
+      }
+    },
+    "mushroom": {
+      "diet": "vegan",
+      "name": {
+        "en": "Mushrooms",
+        "hi": "मशरूम",
+        "mr": "मशरूम"
+      }
+    },
+    "legumes_sprouts": {
+      "diet": "vegan",
+      "name": {
+        "en": "Sprouts and legumes",
+        "hi": "अंकुरित अनाज और फलियाँ",
+        "mr": "मोड आलेली कडधान्ये आणि शेंगा"
+      }
+    }
+  },
+  "tips": {
+    "vit_c_iron": {
+      "en": "Pair iron-rich foods with vitamin C sources, which can support iron absorption.",
+      "hi": "आयरन युक्त भोजन के साथ विटामिन C के स्रोत लेने से आयरन के अवशोषण में सहायता मिल सकती है।",
+      "mr": "लोहयुक्त पदार्थांसोबत व्हिटॅमिन C चे स्रोत घेतल्यास लोहाच्या शोषणास मदत होऊ शकते."
+    },
+    "tea_gap": {
+      "en": "Tea and coffee taken right with meals can reduce iron absorption; try keeping a gap of an hour or so.",
+      "hi": "भोजन के साथ तुरंत चाय या कॉफी लेने से आयरन का अवशोषण कम हो सकता है; लगभग एक घंटे का अंतर रखने का प्रयास करें।",
+      "mr": "जेवणासोबत लगेच चहा किंवा कॉफी घेतल्यास लोहाचे शोषण कमी होऊ शकते; सुमारे एक तासाचे अंतर ठेवण्याचा प्रयत्न करा."
+    },
+    "balanced_diet": {
+      "en": "Aim for a balanced diet with a variety of foods.",
+      "hi": "विविध खाद्य पदार्थों के साथ संतुलित आहार लेने का प्रयास करें।",
+      "mr": "विविध अन्नपदार्थांसह संतुलित आहार घेण्याचा प्रयत्न करा."
+    },
+    "hydration": {
+      "en": "Drink enough water through the day unless your doctor has advised otherwise.",
+      "hi": "जब तक डॉक्टर ने अन्यथा सलाह न दी हो, दिन भर पर्याप्त पानी पिएँ।",
+      "mr": "डॉक्टरांनी वेगळा सल्ला दिला नसेल तर दिवसभर पुरेसे पाणी प्या."
+    },
+    "reduce_sugar": {
+      "en": "Limit added sugar, sweets and sugary drinks.",
+      "hi": "अतिरिक्त चीनी, मिठाइयों और मीठे पेय पदार्थों को सीमित करें।",
+      "mr": "अतिरिक्त साखर, मिठाई आणि गोड पेये मर्यादित ठेवा."
+    },
+    "reduce_refined": {
+      "en": "Prefer whole grains over refined flour (maida) and white bread.",
+      "hi": "मैदा और सफेद ब्रेड की बजाय साबुत अनाज को प्राथमिकता दें।",
+      "mr": "मैदा आणि पांढऱ्या ब्रेडऐवजी संपूर्ण धान्यांना प्राधान्य द्या."
+    },
+    "reduce_fried": {
+      "en": "Limit deep-fried, oily and highly processed foods.",
+      "hi": "तले हुए, अधिक तैलीय और प्रोसेस्ड खाद्य पदार्थों को सीमित करें।",
+      "mr": "तळलेले, अतिशय तेलकट आणि प्रक्रिया केलेले पदार्थ मर्यादित ठेवा."
+    },
+    "activity": {
+      "en": "Regular physical activity, such as brisk walking on most days, supports overall health. Check with your doctor first if you have any health condition.",
+      "hi": "नियमित शारीरिक गतिविधि, जैसे अधिकतर दिनों में तेज़ चलना, समग्र स्वास्थ्य के लिए अच्छी है। कोई स्वास्थ्य समस्या हो तो पहले डॉक्टर से पूछें।",
+      "mr": "नियमित शारीरिक हालचाल, जसे की बहुतेक दिवशी जलद चालणे, एकूण आरोग्यासाठी उपयुक्त आहे. काही आरोग्य समस्या असल्यास आधी डॉक्टरांना विचारा."
+    },
+    "sunlight": {
+      "en": "Regular, safe exposure to morning sunlight supports vitamin D; ask your doctor what is suitable for you.",
+      "hi": "सुबह की धूप में नियमित और सुरक्षित समय बिताना विटामिन D के लिए सहायक है; आपके लिए क्या उचित है, डॉक्टर से पूछें।",
+      "mr": "सकाळच्या उन्हात नियमित आणि सुरक्षित वेळ घालवणे व्हिटॅमिन D साठी उपयुक्त आहे; तुमच्यासाठी काय योग्य आहे ते डॉक्टरांना विचारा."
+    },
+    "b12_plant": {
+      "en": "Plant foods contain very little natural vitamin B12, so vegetarians and especially vegans should discuss it with a healthcare professional.",
+      "hi": "पौधों से मिलने वाले भोजन में विटामिन B12 बहुत कम होता है, इसलिए शाकाहारी और विशेषकर वीगन लोग इस बारे में स्वास्थ्य विशेषज्ञ से चर्चा करें।",
+      "mr": "वनस्पतीजन्य अन्नात व्हिटॅमिन B12 अत्यल्प असते, त्यामुळे शाकाहारी आणि विशेषतः व्हेगन लोकांनी आरोग्य तज्ज्ञांशी चर्चा करावी."
+    },
+    "no_self_med": {
+      "en": "Do not start supplements or medicines on your own; discuss with a doctor first.",
+      "hi": "खुद से सप्लीमेंट या दवाइयाँ शुरू न करें; पहले डॉक्टर से चर्चा करें।",
+      "mr": "स्वतःहून सप्लिमेंट्स किंवा औषधे सुरू करू नका; आधी डॉक्टरांशी चर्चा करा."
+    },
+    "limit_alcohol": {
+      "en": "Limit alcohol intake.",
+      "hi": "शराब का सेवन सीमित करें।",
+      "mr": "मद्यपान मर्यादित ठेवा."
+    },
+    "regular_meals": {
+      "en": "Eat regular, balanced meals and do not skip them.",
+      "hi": "नियमित और संतुलित भोजन करें, भोजन छोड़ें नहीं।",
+      "mr": "नियमित आणि संतुलित जेवण घ्या, जेवण टाळू नका."
+    },
+    "see_doctor": {
+      "en": "Discuss this result with a healthcare professional, especially if it persists or you have symptoms.",
+      "hi": "इस परिणाम के बारे में स्वास्थ्य विशेषज्ञ से चर्चा करें, खासकर यदि यह बना रहे या लक्षण हों।",
+      "mr": "या निकालाबद्दल आरोग्य तज्ज्ञांशी चर्चा करा, विशेषतः तो कायम राहिल्यास किंवा लक्षणे असल्यास."
+    }
+  },
+  "parameters": {
+    "Hemoglobin": {
+      "plausible": {
+        "units": [
+          "g/dl",
+          "gm/dl",
+          "g%"
+        ],
+        "min": 1,
+        "max": 25
+      },
+      "names": {
+        "en": "Hemoglobin",
+        "hi": "हीमोग्लोबिन",
+        "mr": "हिमोग्लोबिन"
+      },
+      "meaning": {
+        "en": "Hemoglobin is a protein in red blood cells that carries oxygen around the body.",
+        "hi": "हीमोग्लोबिन लाल रक्त कोशिकाओं में पाया जाने वाला प्रोटीन है जो शरीर में ऑक्सीजन पहुँचाता है।",
+        "mr": "हिमोग्लोबिन हे लाल रक्तपेशींमधील प्रथिन आहे जे शरीरात ऑक्सिजन पोहोचवते."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [
+            "spinach",
+            "lentils",
+            "rajma",
+            "jaggery_dates",
+            "pomegranate",
+            "citrus",
+            "eggs",
+            "chicken",
+            "fish"
+          ],
+          "tips": [
+            "vit_c_iron",
+            "tea_gap",
+            "balanced_diet",
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [],
+          "tips": [
+            "hydration",
+            "see_doctor"
+          ]
+        }
+      }
+    },
+    "WBC": {
+      "plausible": null,
+      "names": {
+        "en": "White blood cells (WBC)",
+        "hi": "श्वेत रक्त कोशिकाएँ (WBC)",
+        "mr": "पांढऱ्या रक्तपेशी (WBC)"
+      },
+      "meaning": {
+        "en": "White blood cells help the body fight infections.",
+        "hi": "श्वेत रक्त कोशिकाएँ शरीर को संक्रमण से लड़ने में मदद करती हैं।",
+        "mr": "पांढऱ्या रक्तपेशी शरीराला संसर्गाशी लढण्यास मदत करतात."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        }
+      }
+    },
+    "RBC": {
+      "plausible": null,
+      "names": {
+        "en": "Red blood cells (RBC)",
+        "hi": "लाल रक्त कोशिकाएँ (RBC)",
+        "mr": "लाल रक्तपेशी (RBC)"
+      },
+      "meaning": {
+        "en": "Red blood cells carry oxygen from the lungs to the rest of the body.",
+        "hi": "लाल रक्त कोशिकाएँ फेफड़ों से शरीर के बाकी हिस्सों तक ऑक्सीजन ले जाती हैं।",
+        "mr": "लाल रक्तपेशी फुफ्फुसांतून शरीराच्या इतर भागांपर्यंत ऑक्सिजन वाहून नेतात."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        }
+      }
+    },
+    "Platelets": {
+      "plausible": null,
+      "names": {
+        "en": "Platelets",
+        "hi": "प्लेटलेट्स",
+        "mr": "प्लेटलेट्स"
+      },
+      "meaning": {
+        "en": "Platelets help the blood to clot.",
+        "hi": "प्लेटलेट्स रक्त का थक्का बनाने में मदद करते हैं।",
+        "mr": "प्लेटलेट्स रक्त गोठण्यास मदत करतात."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        }
+      }
+    },
+    "Hematocrit": {
+      "plausible": null,
+      "names": {
+        "en": "Hematocrit",
+        "hi": "हेमेटोक्रिट",
+        "mr": "हेमॅटोक्रिट"
+      },
+      "meaning": {
+        "en": "Hematocrit is the share of your blood made up of red blood cells.",
+        "hi": "हेमेटोक्रिट आपके रक्त में लाल रक्त कोशिकाओं का प्रतिशत है।",
+        "mr": "हेमॅटोक्रिट म्हणजे रक्तातील लाल रक्तपेशींचे प्रमाण."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        }
+      }
+    },
+    "Fasting Glucose": {
+      "plausible": {
+        "units": [
+          "mg/dl"
+        ],
+        "min": 10,
+        "max": 1500
+      },
+      "names": {
+        "en": "Fasting glucose",
+        "hi": "फास्टिंग ग्लूकोज",
+        "mr": "फास्टिंग ग्लुकोज"
+      },
+      "meaning": {
+        "en": "Fasting glucose is the sugar level in the blood after not eating for several hours.",
+        "hi": "फास्टिंग ग्लूकोज कई घंटे कुछ न खाने के बाद रक्त में शर्करा का स्तर है।",
+        "mr": "फास्टिंग ग्लुकोज म्हणजे काही तास काही न खाल्ल्यानंतर रक्तातील साखरेची पातळी."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [
+            "fruits_veg"
+          ],
+          "tips": [
+            "regular_meals",
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [
+            "whole_grains",
+            "legumes_sprouts",
+            "methi",
+            "fruits_veg",
+            "nuts"
+          ],
+          "tips": [
+            "reduce_sugar",
+            "reduce_refined",
+            "activity",
+            "see_doctor"
+          ]
+        }
+      }
+    },
+    "HbA1c": {
+      "plausible": {
+        "units": [
+          "%"
+        ],
+        "min": 2,
+        "max": 25
+      },
+      "names": {
+        "en": "HbA1c",
+        "hi": "HbA1c",
+        "mr": "HbA1c"
+      },
+      "meaning": {
+        "en": "HbA1c reflects your average blood sugar over roughly the last 2-3 months.",
+        "hi": "HbA1c पिछले लगभग 2-3 महीनों में आपके औसत रक्त शर्करा स्तर को दर्शाता है।",
+        "mr": "HbA1c गेल्या सुमारे 2-3 महिन्यांतील तुमची सरासरी रक्तशर्करा दर्शवतो."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [
+            "whole_grains",
+            "legumes_sprouts",
+            "methi",
+            "fruits_veg",
+            "nuts"
+          ],
+          "tips": [
+            "reduce_sugar",
+            "reduce_refined",
+            "activity",
+            "see_doctor"
+          ]
+        }
+      }
+    },
+    "Total Cholesterol": {
+      "plausible": {
+        "units": [
+          "mg/dl"
+        ],
+        "min": 20,
+        "max": 1000
+      },
+      "names": {
+        "en": "Total cholesterol",
+        "hi": "टोटल कोलेस्ट्रॉल",
+        "mr": "टोटल कोलेस्टेरॉल"
+      },
+      "meaning": {
+        "en": "Total cholesterol is the overall amount of cholesterol, a fatty substance, in your blood.",
+        "hi": "टोटल कोलेस्ट्रॉल आपके रक्त में कोलेस्ट्रॉल, एक वसायुक्त पदार्थ, की कुल मात्रा है।",
+        "mr": "टोटल कोलेस्टेरॉल म्हणजे रक्तातील कोलेस्टेरॉल या चरबीयुक्त पदार्थाचे एकूण प्रमाण."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [
+            "whole_grains",
+            "nuts",
+            "flax",
+            "fruits_veg",
+            "legumes_sprouts"
+          ],
+          "tips": [
+            "reduce_fried",
+            "activity",
+            "see_doctor"
+          ]
+        }
+      }
+    },
+    "LDL Cholesterol": {
+      "plausible": {
+        "units": [
+          "mg/dl"
+        ],
+        "min": 5,
+        "max": 800
+      },
+      "names": {
+        "en": "LDL cholesterol",
+        "hi": "LDL कोलेस्ट्रॉल",
+        "mr": "LDL कोलेस्टेरॉल"
+      },
+      "meaning": {
+        "en": "LDL is often called 'bad' cholesterol because high levels are linked with heart health risks.",
+        "hi": "LDL को अक्सर 'खराब' कोलेस्ट्रॉल कहा जाता है क्योंकि इसका उच्च स्तर हृदय स्वास्थ्य के जोखिम से जुड़ा है।",
+        "mr": "LDL ला अनेकदा 'वाईट' कोलेस्टेरॉल म्हणतात कारण त्याची उच्च पातळी हृदयाच्या आरोग्याच्या जोखमीशी संबंधित आहे."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [
+            "whole_grains",
+            "nuts",
+            "flax",
+            "fruits_veg",
+            "legumes_sprouts"
+          ],
+          "tips": [
+            "reduce_fried",
+            "activity",
+            "see_doctor"
+          ]
+        }
+      }
+    },
+    "HDL Cholesterol": {
+      "plausible": {
+        "units": [
+          "mg/dl"
+        ],
+        "min": 5,
+        "max": 300
+      },
+      "names": {
+        "en": "HDL cholesterol",
+        "hi": "HDL कोलेस्ट्रॉल",
+        "mr": "HDL कोलेस्टेरॉल"
+      },
+      "meaning": {
+        "en": "HDL is often called 'good' cholesterol; higher levels are generally considered favourable.",
+        "hi": "HDL को अक्सर 'अच्छा' कोलेस्ट्रॉल कहा जाता है; इसका अधिक स्तर आमतौर पर अनुकूल माना जाता है।",
+        "mr": "HDL ला अनेकदा 'चांगले' कोलेस्टेरॉल म्हणतात; त्याची जास्त पातळी साधारणपणे अनुकूल मानली जाते."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [
+            "nuts",
+            "flax",
+            "fatty_fish"
+          ],
+          "tips": [
+            "activity",
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        }
+      }
+    },
+    "Triglycerides": {
+      "plausible": {
+        "units": [
+          "mg/dl"
+        ],
+        "min": 10,
+        "max": 5000
+      },
+      "names": {
+        "en": "Triglycerides",
+        "hi": "ट्राइग्लिसराइड्स",
+        "mr": "ट्रायग्लिसराइड्स"
+      },
+      "meaning": {
+        "en": "Triglycerides are a type of fat in the blood; levels rise with excess calories, sugar and alcohol.",
+        "hi": "ट्राइग्लिसराइड्स रक्त में पाई जाने वाली एक प्रकार की वसा है; अधिक कैलोरी, चीनी और शराब से इसका स्तर बढ़ सकता है।",
+        "mr": "ट्रायग्लिसराइड्स हा रक्तातील चरबीचा एक प्रकार आहे; जास्त कॅलरी, साखर आणि मद्यपानाने त्याची पातळी वाढू शकते."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [
+            "whole_grains",
+            "fruits_veg",
+            "flax",
+            "fatty_fish"
+          ],
+          "tips": [
+            "reduce_sugar",
+            "reduce_refined",
+            "limit_alcohol",
+            "activity",
+            "see_doctor"
+          ]
+        }
+      }
+    },
+    "Vitamin B12": {
+      "plausible": {
+        "units": [
+          "pg/ml",
+          "pmol/l",
+          "ng/l"
+        ],
+        "min": 10,
+        "max": 20000
+      },
+      "names": {
+        "en": "Vitamin B12",
+        "hi": "विटामिन B12",
+        "mr": "व्हिटॅमिन B12"
+      },
+      "meaning": {
+        "en": "Vitamin B12 supports nerves and the making of red blood cells.",
+        "hi": "विटामिन B12 नसों और लाल रक्त कोशिकाओं के निर्माण में सहायक है।",
+        "mr": "व्हिटॅमिन B12 मज्जातंतू आणि लाल रक्तपेशींच्या निर्मितीस मदत करते."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [
+            "milk_curd",
+            "eggs",
+            "fish",
+            "fortified"
+          ],
+          "tips": [
+            "b12_plant",
+            "no_self_med",
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [],
+          "tips": [
+            "no_self_med",
+            "see_doctor"
+          ]
+        }
+      }
+    },
+    "Vitamin D": {
+      "plausible": {
+        "units": [
+          "ng/ml",
+          "nmol/l"
+        ],
+        "min": 1,
+        "max": 500
+      },
+      "names": {
+        "en": "Vitamin D",
+        "hi": "विटामिन D",
+        "mr": "व्हिटॅमिन D"
+      },
+      "meaning": {
+        "en": "Vitamin D helps the body absorb calcium and keeps bones and muscles healthy.",
+        "hi": "विटामिन D शरीर को कैल्शियम सोखने में मदद करता है और हड्डियों व मांसपेशियों को स्वस्थ रखता है।",
+        "mr": "व्हिटॅमिन D शरीराला कॅल्शियम शोषून घेण्यास मदत करते आणि हाडे व स्नायू निरोगी ठेवते."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [
+            "mushroom",
+            "fortified",
+            "milk_curd",
+            "eggs",
+            "fatty_fish"
+          ],
+          "tips": [
+            "sunlight",
+            "no_self_med",
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [],
+          "tips": [
+            "no_self_med",
+            "see_doctor"
+          ]
+        }
+      }
+    },
+    "TSH": {
+      "plausible": {
+        "units": [
+          "uiu/ml",
+          "miu/l",
+          "uiu/l",
+          "miu/ml"
+        ],
+        "min": 0.001,
+        "max": 500
+      },
+      "names": {
+        "en": "TSH (thyroid stimulating hormone)",
+        "hi": "TSH (थायरॉइड स्टिमुलेटिंग हार्मोन)",
+        "mr": "TSH (थायरॉईड स्टिम्युलेटिंग हार्मोन)"
+      },
+      "meaning": {
+        "en": "TSH is a hormone from the pituitary gland that signals the thyroid gland; it helps assess thyroid function.",
+        "hi": "TSH पिट्यूटरी ग्रंथि से निकलने वाला हार्मोन है जो थायरॉइड ग्रंथि को संकेत देता है; यह थायरॉइड के कार्य को समझने में मदद करता है।",
+        "mr": "TSH हा पिट्युटरी ग्रंथीतून येणारा हार्मोन आहे जो थायरॉईड ग्रंथीला संकेत देतो; तो थायरॉईडचे कार्य समजण्यास मदत करतो."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [],
+          "tips": [
+            "see_doctor",
+            "no_self_med"
+          ]
+        },
+        "HIGH": {
+          "foods": [],
+          "tips": [
+            "see_doctor",
+            "no_self_med"
+          ]
+        }
+      }
+    },
+    "Creatinine": {
+      "plausible": {
+        "units": [
+          "mg/dl"
+        ],
+        "min": 0.1,
+        "max": 30
+      },
+      "names": {
+        "en": "Creatinine",
+        "hi": "क्रिएटिनिन",
+        "mr": "क्रिएटिनिन"
+      },
+      "meaning": {
+        "en": "Creatinine is a waste product filtered by the kidneys; it is used to assess kidney function.",
+        "hi": "क्रिएटिनिन एक अपशिष्ट पदार्थ है जिसे गुर्दे छानते हैं; इससे गुर्दे के कार्य का आकलन किया जाता है।",
+        "mr": "क्रिएटिनिन हा टाकाऊ पदार्थ आहे जो मूत्रपिंड गाळतात; त्यावरून मूत्रपिंडाच्या कार्याचा अंदाज घेतला जातो."
+      },
+      "guidance": {
+        "LOW": {
+          "foods": [],
+          "tips": [
+            "see_doctor"
+          ]
+        },
+        "HIGH": {
+          "foods": [],
+          "tips": [
+            "hydration",
+            "see_doctor"
+          ]
+        }
+      }
+    }
+  }
+}

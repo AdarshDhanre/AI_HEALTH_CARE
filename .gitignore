@@ -1,0 +1,36 @@
+# secrets
+.env
+*.env
+*.env.local
+!*.env.example
+
+# uploads (patient data!)
+storage/uploads/*
+storage/processed/*
+!storage/uploads/.gitkeep
+!storage/processed/.gitkeep
+
+# local runtime tools and database data
+tools/
+database/data/
+*.log
+
+# node / vite
+node_modules/
+frontend/dist/
+
+# java
+backend-java/target/
+.idea/
+*.iml
+.vscode/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# datasets
+data-processing/datasets/*
+!data-processing/datasets/.gitkeep

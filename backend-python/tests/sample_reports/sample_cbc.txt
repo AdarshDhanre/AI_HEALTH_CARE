@@ -1,0 +1,13 @@
+Sunrise Diagnostics & Pathology Lab
+Patient Name: Test Patient
+Report Date: 2026-08-15
+Test Name                Result     Unit        Reference Range
+Hemoglobin (Hb)          10.2       g/dL        13.0 - 17.0
+Total WBC Count          7200       /cumm       4000 - 11000
+Platelet Count           250        10^3/uL     150 - 450
+RBC Count                4.1        million/cumm  4.5 - 5.5
+Vitamin B12              180        pg/mL       211 - 911
+Fasting Blood Sugar      92         mg/dL       70 - 100
+Triglycerides            1200       mg/dL       < 150
+HbA1c                    5.4        %           4.0 - 5.6
+TSH                      2.5        uIU/mL      0.4 - 4.0

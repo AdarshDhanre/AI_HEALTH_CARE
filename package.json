@@ -1,0 +1,10 @@
+{
+  "name": "ai-healthcare-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "frontend": "npm --prefix frontend run dev",
+    "start": "start-all.bat"
+  }
+}
