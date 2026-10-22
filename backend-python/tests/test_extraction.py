@@ -15,8 +15,11 @@ def test_extracts_nine_tests():
 
 def test_report_date():
     assert extract_report_date(TXT) == "2026-08-15"
+<<<<<<< HEAD
     assert extract_report_date("Report Date: 15/08/2026") == "2026-08-15"
 
 
 def test_report_date_accepts_unambiguous_month_first_format():
     assert extract_report_date("Report Date: 08/15/2026") == "2026-08-15"
+=======
+>>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c

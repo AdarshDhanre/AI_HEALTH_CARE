@@ -7,20 +7,36 @@ cd /d "%~dp0"
 
 netstat -ano | findstr :5432 | findstr LISTENING >nul
 if errorlevel 1 (
+<<<<<<< HEAD
     echo [1/5] Starting PostgreSQL Database [localhost:5432]...
     ".\tools\pgsql\bin\pg_ctl.exe" -D "database\data" -l "database\data\server.log" start
     ping -n 3 127.0.0.1 >nul
 ) else (
     echo [1/5] PostgreSQL Database is already running.
+=======
+    echo [1/4] Starting PostgreSQL Database [localhost:5432]...
+    ".\tools\pgsql\bin\pg_ctl.exe" -D "database\data" -l "database\data\server.log" start
+    ping -n 3 127.0.0.1 >nul
+) else (
+    echo [1/4] PostgreSQL Database is already running.
+>>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
 )
 
 netstat -ano | findstr :8000 | findstr LISTENING >nul
 if errorlevel 1 (
+<<<<<<< HEAD
     echo [2/5] Starting AI Service [FastAPI :8000]...
     start "MediCase-AI-Python" /d "%~dp0backend-python" cmd /k ".venv\Scripts\python.exe run.py"
     ping -n 3 127.0.0.1 >nul
 ) else (
     echo [2/5] AI Service is already running.
+=======
+    echo [2/4] Starting AI Service [FastAPI :8000]...
+    start "MediCase-AI-Python" /d "%~dp0backend-python" cmd /k ".venv\Scripts\python.exe run.py"
+    ping -n 3 127.0.0.1 >nul
+) else (
+    echo [2/4] AI Service is already running.
+>>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
 )
 
 netstat -ano | findstr :8001 | findstr LISTENING >nul
@@ -35,7 +51,11 @@ if errorlevel 1 (
 netstat -ano | findstr :8080 | findstr LISTENING >nul
 if errorlevel 1 (
     echo [4/5] Starting Java Backend [Spring Boot :8080]...
+<<<<<<< HEAD
     start "MediCase-Backend-Java" /d "%~dp0backend-java" cmd /k "mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=dev"
+=======
+    start "MediCase-Backend-Java" /d "%~dp0backend-java" cmd /k "mvnw.cmd spring-boot:run \"-Dspring-boot.run.profiles=dev\""
+>>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
     ping -n 4 127.0.0.1 >nul
 ) else (
     echo [4/5] Java Backend is already running.
@@ -45,12 +65,17 @@ netstat -ano | findstr :5173 | findstr LISTENING >nul
 if errorlevel 1 (
     echo [5/5] Starting Frontend [Vite :5173]...
     start "MediCase-Frontend" /d "%~dp0frontend" cmd /k "npm run dev"
+<<<<<<< HEAD
     ping -n 4 127.0.0.1 >nul
+=======
+    ping -n 3 127.0.0.1 >nul
+>>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
 ) else (
     echo [5/5] Frontend is already running.
 )
 
 echo.
+<<<<<<< HEAD
 echo Waiting for services to initialize...
 for /l %%i in (1, 1, 10) do (
     netstat -ano | findstr :5173 | findstr LISTENING >nul
@@ -60,6 +85,8 @@ for /l %%i in (1, 1, 10) do (
 
 :ready
 echo.
+=======
+>>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
 echo ==============================================
 echo All services are active! Opening frontend...
 echo   Frontend:     http://localhost:5173

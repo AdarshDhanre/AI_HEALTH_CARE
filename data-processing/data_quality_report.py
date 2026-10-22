@@ -19,4 +19,7 @@ def main(path):
 
 if __name__ == "__main__":
     main(sys.argv[1])
+<<<<<<< HEAD
     
+=======
+>>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
