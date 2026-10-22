@@ -192,6 +192,134 @@ def health():
     }
 
 
+
+def parse_aadhaar_fields(raw_text: str) -> dict:
+    """Extract limited Aadhaar reference fields; never return raw OCR text."""
+    lines = [
+        re.sub(r"\s+", " ", line).strip()
+        for line in raw_text.splitlines()
+        if line.strip()
+    ]
+
+    fields = {
+        "name": None,
+        "dob": None,
+        "gender": None,
+        "last_four": None,
+    }
+
+    # Return only the final four digits from a detected 12-digit number.
+    number_match = re.search(
+        r"(?<!\d)(?:\d[\s-]*){8}(\d{4})(?!\d)",
+        raw_text,
+    )
+    if number_match:
+        fields["last_four"] = number_match.group(1)
+
+    dob_match = re.search(
+        r"(?:DOB|Date\s+of\s+Birth|Year\s+of\s+Birth|YOB)"
+        r"\s*[:\-]?\s*"
+        r"(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4}|\d{4})",
+        raw_text,
+        re.IGNORECASE,
+    )
+    if dob_match:
+        fields["dob"] = dob_match.group(1)
+
+    gender_match = re.search(
+        r"\b(Male|Female|Transgender)\b",
+        raw_text,
+        re.IGNORECASE,
+    )
+    if gender_match:
+        fields["gender"] = gender_match.group(1).capitalize()
+
+    excluded = (
+        "government of india", "unique identification",
+        "authority of india", "aadhaar", "aadhar", "uidai",
+        "date of birth", "dob", "year of birth", "male",
+        "female", "address", "enrolment", "enrollment",
+        "download", "help",
+    )
+
+    for line in lines:
+        if any(word in line.lower() for word in excluded):
+            continue
+        if re.search(r"\d", line):
+            continue
+        cleaned = re.sub(r"[^A-Za-z .'-]", "", line).strip(" .'-")
+        words = cleaned.split()
+        if 2 <= len(words) <= 5 and all(
+            re.fullmatch(r"[A-Za-z][A-Za-z.'-]*", word)
+            for word in words
+        ):
+            fields["name"] = cleaned
+            break
+
+    return fields
+
+
+@app.post("/aadhaar/extract")
+async def extract_aadhaar(file: UploadFile = File(...)):
+    allowed_types = {
+        "image/png", "image/jpeg", "image/jpg",
+        "image/pjpeg", "image/webp",
+    }
+
+    if file.content_type not in allowed_types:
+        await file.close()
+        raise HTTPException(
+            status_code=415,
+            detail="Upload PNG, JPEG, or WEBP image only.",
+        )
+
+    try:
+        content = await file.read()
+    finally:
+        await file.close()
+
+    if len(content) > 5 * 1024 * 1024:
+        raise HTTPException(
+            status_code=413,
+            detail="Image must be 5 MB or smaller.",
+        )
+
+    try:
+        image = Image.open(io.BytesIO(content))
+        image = ImageOps.exif_transpose(image).convert("RGB")
+    except Exception:
+        raise HTTPException(
+            status_code=400,
+            detail="Could not read image.",
+        )
+
+    image = ImageOps.grayscale(image)
+    image = ImageOps.autocontrast(image)
+    image = image.resize((image.width * 2, image.height * 2))
+    image = ImageEnhance.Contrast(image).enhance(1.5)
+    image = image.filter(ImageFilter.SHARPEN)
+
+    try:
+        raw_text = pytesseract.image_to_string(
+            image, config="--oem 3 --psm 6"
+        )
+    except Exception:
+        raise HTTPException(
+            status_code=500,
+            detail="OCR failed. Check your Tesseract installation.",
+        )
+
+    return JSONResponse({
+        "extraction_only": True,
+        "identity_verified": False,
+        "warning": (
+            "OCR may be inaccurate. Review details manually. "
+            "This service does not perform UIDAI verification."
+        ),
+        "extracted_fields": parse_aadhaar_fields(raw_text),
+    })
+
+
 @app.post("/extract")
 async def extract(file: UploadFile = File(...)):
 

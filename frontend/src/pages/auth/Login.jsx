@@ -11,18 +11,16 @@ export default function Login() {
   const { login } = useAuth()
   const nav = useNavigate()
 
-  const [activeTab, setActiveTab] = useState('email') // 'email' | 'ayushman' | 'aadhaar'
+  const [activeTab, setActiveTab] = useState('email') 
   const [form, setForm] = useState({ email: '', password: '' })
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
 
-  // Ayushman Card Login state
   const [cardFile, setCardFile] = useState(null)
   const [cardBusy, setCardBusy] = useState(false)
   const [cardResult, setCardResult] = useState(null)
   const [cardPassword, setCardPassword] = useState('')
 
-  // Aadhaar card selection (the backend does not currently perform UIDAI verification)
   const [aadhaarFile, setAadhaarFile] = useState(null)
   const [aadhaarPassword, setAadhaarPassword] = useState('')
 
@@ -83,7 +81,6 @@ export default function Login() {
     setBusy(true)
     setError(null)
 
-    // Attempt login with the card's email identifier and password
     const loginEmail = form.email || (cardResult.pmjay_id
       ? `patient_${cardResult.pmjay_id.toLowerCase().replace(/[^a-z0-9]/g, '')}@ayushman.local`
       : '')
