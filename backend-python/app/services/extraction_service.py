@@ -94,14 +94,20 @@ def extract_report_date(text: str) -> Optional[str]:
                     candidates.append(date(y, mo, d))
                 except ValueError:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
                     if kind == "dmy":
                         try:
                             candidates.append(date(int(m.group(3)), int(m.group(1)), int(m.group(2))))
                         except ValueError:
                             pass
+<<<<<<< HEAD
 =======
                     pass
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
     return max(candidates).isoformat() if candidates else None
 
 

@@ -27,15 +27,21 @@ function Layout() {
         <main className="min-w-0 flex-1 p-4 sm:p-6 lg:p-8"><Outlet /></main>
 =======
 import AadhaarScanner from './pages/AadhaarScanner'
+import HealthRiskAssessment from './pages/HealthRiskAssessment'
+import PatientInterview from './pages/PatientInterview'
 
 function Layout() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-slate-50">
       <Navbar />
       <div className="flex flex-1">
         <Sidebar />
+<<<<<<< HEAD
         <main className="flex-1 p-6"><Outlet /></main>
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+        <main className="min-w-0 flex-1 p-4 sm:p-6 lg:p-8"><Outlet /></main>
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
       </div>
     </div>
   )
@@ -67,7 +73,12 @@ export default function App() {
         <Route path="/risk-assessment" element={<ProtectedRoute roles={CLINICAL}><HealthRiskAssessment /></ProtectedRoute>} />
 =======
         <Route path="/aadhaar-scanner" element={<ProtectedRoute roles={CLINICAL}><AadhaarScanner /></ProtectedRoute>} />
+<<<<<<< HEAD
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+        <Route path="/risk-assessment" element={<ProtectedRoute roles={CLINICAL}><HealthRiskAssessment /></ProtectedRoute>} />
+        <Route path="/patient-interview" element={<ProtectedRoute roles={['PATIENT']}><PatientInterview /></ProtectedRoute>} />
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
         <Route path="/reports/:id" element={<ProtectedRoute roles={CLINICAL}><ReportReview /></ProtectedRoute>} />
         <Route path="/admin/users" element={<ProtectedRoute roles={['ADMIN']}><UserManagement /></ProtectedRoute>} />
         <Route path="/research" element={<ProtectedRoute roles={['RESEARCHER', 'ADMIN']}><Analytics /></ProtectedRoute>} />

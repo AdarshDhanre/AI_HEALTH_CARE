@@ -16,11 +16,16 @@ class Settings(BaseSettings):
     max_upload_mb: int = 10
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     _backend_env = Path(__file__).resolve().parent.parent.parent / ".env"
     model_config = SettingsConfigDict(env_file=(_backend_env, ".env"), extra="ignore")
 =======
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+    _backend_env = Path(__file__).resolve().parent.parent.parent / ".env"
+    model_config = SettingsConfigDict(env_file=(_backend_env, ".env"), extra="ignore")
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
 
 
 settings = Settings()

@@ -16,10 +16,16 @@ def test_extracts_nine_tests():
 def test_report_date():
     assert extract_report_date(TXT) == "2026-08-15"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
     assert extract_report_date("Report Date: 15/08/2026") == "2026-08-15"
 
 
 def test_report_date_accepts_unambiguous_month_first_format():
     assert extract_report_date("Report Date: 08/15/2026") == "2026-08-15"
+<<<<<<< HEAD
 =======
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)

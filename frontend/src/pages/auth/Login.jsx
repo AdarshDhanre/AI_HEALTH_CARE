@@ -12,29 +12,40 @@ export default function Login() {
   const nav = useNavigate()
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   const [activeTab, setActiveTab] = useState('email') // 'email' | 'ayushman'
 =======
   const [activeTab, setActiveTab] = useState('email') 
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+  const [activeTab, setActiveTab] = useState('email') // 'email' | 'ayushman'
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
   const [form, setForm] = useState({ email: '', password: '' })
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   // Ayushman Card Login state
 =======
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+  // Ayushman Card Login state
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
   const [cardFile, setCardFile] = useState(null)
   const [cardBusy, setCardBusy] = useState(false)
   const [cardResult, setCardResult] = useState(null)
   const [cardPassword, setCardPassword] = useState('')
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   const [aadhaarFile, setAadhaarFile] = useState(null)
   const [aadhaarPassword, setAadhaarPassword] = useState('')
 
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
   const submitEmail = async (e) => {
     e.preventDefault()
     setBusy(true)
@@ -93,9 +104,13 @@ export default function Login() {
     setError(null)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     // Attempt login with the card's email identifier and password
 =======
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+    // Attempt login with the card's email identifier and password
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
     const loginEmail = form.email || (cardResult.pmjay_id
       ? `patient_${cardResult.pmjay_id.toLowerCase().replace(/[^a-z0-9]/g, '')}@ayushman.local`
       : '')
@@ -120,10 +135,14 @@ export default function Login() {
 
         {/* Tab Switcher */}
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div className="grid grid-cols-2 rounded-lg bg-slate-100 p-1 text-xs font-semibold">
 =======
         <div className="grid grid-cols-3 gap-1 rounded-lg bg-slate-100 p-1 text-xs font-semibold">
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+        <div className="grid grid-cols-2 rounded-lg bg-slate-100 p-1 text-xs font-semibold">
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
           <button
             type="button"
             onClick={() => { setActiveTab('email'); setError(null) }}
@@ -147,6 +166,7 @@ export default function Login() {
             <span>🪪</span> Ayushman Card
           </button>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
           <button
             type="button"
@@ -160,6 +180,8 @@ export default function Login() {
             <span>🪪</span> Aadhaar Card
           </button>
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
         </div>
 
         {/* Standard Email Login */}
@@ -274,6 +296,7 @@ export default function Login() {
         )}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         {/* Aadhaar Card Login */}
         {activeTab === 'aadhaar' && (
@@ -325,6 +348,8 @@ export default function Login() {
         )}
 
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
         <p className="text-center text-sm">
           {t('auth.noAccount')}{' '}
           <Link className="text-teal-700 underline" to="/signup">

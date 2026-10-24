@@ -71,6 +71,9 @@ public class AiServiceClient {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
     public Map<String, Object> predictRisk(Map<String, Object> request) {
         return post("/predict-risk", request);
     }
@@ -79,8 +82,16 @@ public class AiServiceClient {
         return post("/analyze-symptom-text", request);
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+
+    public Map<String, Object> createPatientInterviewSummary(Map<String, Object> request) {
+        return post("/patient-interview/summary", request);
+    }
+
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
     private Map<String, Object> post(String uri, Object body) {
         try {
             return web.post().uri(uri).bodyValue(body).retrieve().bodyToMono(MAP).block(timeout);

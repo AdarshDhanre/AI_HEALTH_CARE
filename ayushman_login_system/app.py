@@ -193,6 +193,7 @@ def health():
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 def parse_aadhaar_fields(raw_text: str) -> dict:
@@ -323,6 +324,8 @@ async def extract_aadhaar(file: UploadFile = File(...)):
 
 
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
 @app.post("/extract")
 async def extract(file: UploadFile = File(...)):
 
@@ -418,3 +421,134 @@ async def extract(file: UploadFile = File(...)):
         "raw_text": raw_text,
         "lines": labels
     })
+
+
+def parse_aadhaar_fields(raw_text: str) -> dict:
+    """Extract likely Aadhaar fields. OCR does not verify identity."""
+    text = raw_text.replace("\r", "\n")
+
+    fields = {
+        "name": None,
+        "dob": None,
+        "gender": None,
+        "last_four": None,
+    }
+
+    # Name: only accept a name explicitly labelled in OCR text.
+    name_match = re.search(
+        r"(?:Name|नाम)\s*[:\-]?\s*([A-Za-z][A-Za-z .'-]{1,60})",
+        text,
+        re.IGNORECASE,
+    )
+    if name_match:
+        name = name_match.group(1).strip()
+        name = re.split(
+            r"\b(?:DOB|Date of Birth|Year of Birth|Male|Female|"
+            r"VID|Government|India|Aadhaar)\b",
+            name,
+            flags=re.IGNORECASE,
+        )[0].strip(" .:-")
+        if name:
+            fields["name"] = name
+
+    # DOB or year of birth.
+    dob_match = re.search(
+        r"(?:DOB|Date of Birth|जन्म तिथि)\s*[:\-]?\s*"
+        r"(\d{1,2}[-/.]\d{1,2}[-/.]\d{2,4})",
+        text,
+        re.IGNORECASE,
+    )
+    if dob_match:
+        fields["dob"] = dob_match.group(1)
+    else:
+        yob_match = re.search(
+            r"(?:Year of Birth|YOB)\s*[:\-]?\s*((?:19|20)\d{2})",
+            text,
+            re.IGNORECASE,
+        )
+        if yob_match:
+            fields["dob"] = yob_match.group(1)
+
+    # Gender.
+    gender_match = re.search(
+        r"\b(Female|Male|Transgender)\b",
+        text,
+        re.IGNORECASE,
+    )
+    if gender_match:
+        fields["gender"] = gender_match.group(1).capitalize()
+
+    # Keep only the last four digits; never return the full Aadhaar number.
+    digit_text = re.sub(r"(?<=\d)[\s-]+(?=\d)", "", text)
+    number_match = re.search(r"(?<!\d)\d{12}(?!\d)", digit_text)
+    if number_match:
+        fields["last_four"] = number_match.group(0)[-4:]
+
+    return fields
+
+
+@app.post("/aadhaar/extract")
+async def extract_aadhaar(file: UploadFile = File(...)):
+    allowed_types = {
+        "image/png",
+        "image/jpeg",
+        "image/jpg",
+        "image/pjpeg",
+        "image/webp",
+    }
+
+    if file.content_type not in allowed_types:
+        await file.close()
+        raise HTTPException(
+            status_code=415,
+            detail="Upload PNG, JPEG, or WEBP image only.",
+        )
+
+    try:
+        content = await file.read()
+
+        if len(content) > 5 * 1024 * 1024:
+            raise HTTPException(
+                status_code=413,
+                detail="Image must be 5 MB or smaller.",
+            )
+
+        try:
+            image = Image.open(io.BytesIO(content))
+            image = ImageOps.exif_transpose(image).convert("RGB")
+        except Exception:
+            raise HTTPException(
+                status_code=400,
+                detail="Could not read image.",
+            )
+
+        image = ImageOps.grayscale(image)
+        image = ImageOps.autocontrast(image)
+        image = image.resize((image.width * 2, image.height * 2))
+        image = ImageEnhance.Contrast(image).enhance(1.5)
+        image = image.filter(ImageFilter.SHARPEN)
+
+        try:
+            raw_text = pytesseract.image_to_string(
+                image,
+                config="--oem 3 --psm 6",
+            )
+        except Exception:
+            raise HTTPException(
+                status_code=500,
+                detail="OCR failed. Check your Tesseract installation.",
+            )
+
+        fields = parse_aadhaar_fields(raw_text)
+
+        return {
+            "extraction_only": True,
+            "identity_verified": False,
+            "warning": (
+                "OCR may be inaccurate. Review extracted fields manually. "
+                "This service does not perform UIDAI identity verification."
+            ),
+            "extracted_fields": fields,
+        }
+    finally:
+        await file.close()

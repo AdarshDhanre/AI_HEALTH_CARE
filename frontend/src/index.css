@@ -4,11 +4,15 @@
 
 @layer components {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
   .btn { @apply inline-flex items-center justify-center rounded-xl bg-teal-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-teal-700 hover:shadow disabled:cursor-not-allowed disabled:opacity-50; }
   .btn-outline { @apply inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-teal-200 hover:bg-teal-50 hover:text-teal-800; }
   .input { @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-800 shadow-sm transition placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-100; }
   .card { @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6; }
   .label { @apply mb-1.5 block text-sm font-semibold text-slate-700; }
+<<<<<<< HEAD
 =======
   .btn { @apply inline-flex items-center justify-center rounded-lg bg-teal-600 px-4 py-2 text-sm font-medium text-white hover:bg-teal-700 disabled:opacity-50; }
   .btn-outline { @apply inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100; }
@@ -16,4 +20,6 @@
   .card { @apply rounded-xl border border-slate-200 bg-white p-5 shadow-sm; }
   .label { @apply mb-1 block text-sm font-medium text-slate-600; }
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
 }

@@ -8,12 +8,16 @@ export default function Navbar() {
   const { user, logout } = useAuth()
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
     <header className="sticky top-0 z-20 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-3 shadow-sm backdrop-blur sm:px-6">
       <Link to="/" className="flex items-center gap-2 text-lg font-bold text-teal-800">
         <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-100 text-base">🩺</span>
         <span>{t('app')}</span>
       </Link>
       <div className="flex items-center gap-2 sm:gap-4">
+<<<<<<< HEAD
         <LanguageSwitcher />
         {user && (
           <>
@@ -29,6 +33,13 @@ export default function Navbar() {
             <span className="hidden text-sm text-slate-600 sm:inline">{user.fullName} · {user.role}</span>
             <button className="btn-outline" onClick={logout}>{t('nav.logout')}</button>
 >>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
+=======
+        <LanguageSwitcher />
+        {user && (
+          <>
+            <span className="hidden rounded-full bg-slate-100 px-3 py-1.5 text-sm text-slate-600 lg:inline">{user.fullName} · {user.role}</span>
+            <button className="btn-outline px-3 sm:px-4" onClick={logout}>Logout</button>
+>>>>>>> 9d45d5b (Integrate Aadhaar OCR and patient pre-consultation interview)
           </>
         )}
       </div>
