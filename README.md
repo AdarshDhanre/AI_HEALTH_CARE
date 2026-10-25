@@ -15,7 +15,7 @@ cd frontend && npm install && npm run dev   # http://localhost:5173
 1. PostgreSQL: create db `medicase`, user `medicase` (see `backend-java/.env.example`).
 2. AI service: `cd backend-python && pip install -r requirements.txt && uvicorn app.main:app --port 8000`
    (Windows: install Tesseract + Poppler and set `TESSERACT_CMD` / `POPPLER_PATH` in `.env`).
-3. Backend: `cd backend-java && mvn spring-boot:run -Dspring-boot.run.profiles=dev`
+3. Backend (requires JDK 25): `cd backend-java && mvn spring-boot:run -Dspring-boot.run.profiles=dev`
 4. Frontend: `cd frontend && npm install && npm run dev`
 
 Sign up as **Doctor**, register a patient, upload a report.

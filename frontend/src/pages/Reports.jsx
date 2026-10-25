@@ -32,7 +32,7 @@ export default function Reports() {
       <FileUploader onFile={onFile} disabled={busy} />
       {busy && <p className="text-sm text-slate-500">⏳ {t('common.loading')}</p>}
       {(upErr || error) && <p className="text-sm text-red-600">{upErr || error}</p>}
-      {loading ? <Loading /> : reports.length === 0 ? <p className="text-slate-500">{t('common.none')}</p> : (
+      {loading ? <Loading /> : error ? null : reports.length === 0 ? <p className="text-slate-500">{t('common.none')}</p> : (
         <div className="space-y-2">
           {reports.map((r) => {
             const worst = r.results.some((x) => x.safetyLevel === 'RED') ? 'RED' : r.results.some((x) => x.safetyLevel === 'YELLOW') ? 'YELLOW' : r.results.length ? 'GREEN' : 'GREY'

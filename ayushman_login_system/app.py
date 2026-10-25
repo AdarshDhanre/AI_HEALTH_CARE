@@ -192,11 +192,8 @@ def health():
     }
 
 
-<<<<<<< HEAD
-=======
-
 def parse_aadhaar_fields(raw_text: str) -> dict:
-    """Extract limited Aadhaar reference fields; never return raw OCR text."""
+    """Extract Aadhaar fields including aadhaar_number, last_four, dob, gender, phone, and name."""
     lines = [
         re.sub(r"\s+", " ", line).strip()
         for line in raw_text.splitlines()
@@ -208,18 +205,34 @@ def parse_aadhaar_fields(raw_text: str) -> dict:
         "dob": None,
         "gender": None,
         "last_four": None,
+        "aadhaar_number": None,
+        "phone": None,
     }
 
-    # Return only the final four digits from a detected 12-digit number.
-    number_match = re.search(
-        r"(?<!\d)(?:\d[\s-]*){8}(\d{4})(?!\d)",
-        raw_text,
-    )
-    if number_match:
-        fields["last_four"] = number_match.group(1)
+    # 1. 12-digit Aadhaar number extraction (formatted, continuous, or masked)
+    full_match = re.search(r"(?<!\d)(\d{4})[\s-](\d{4})[\s-](\d{4})(?!\d)", raw_text)
+    if full_match:
+        fields["aadhaar_number"] = f"{full_match.group(1)} {full_match.group(2)} {full_match.group(3)}"
+        fields["last_four"] = full_match.group(3)
+    else:
+        continuous_match = re.search(r"(?<!\d)(\d{4})(\d{4})(\d{4})(?!\d)", raw_text)
+        if continuous_match:
+            fields["aadhaar_number"] = f"{continuous_match.group(1)} {continuous_match.group(2)} {continuous_match.group(3)}"
+            fields["last_four"] = continuous_match.group(3)
+        else:
+            masked_match = re.search(r"[Xx\*\.]{4}[\s-]*[Xx\*\.]{4}[\s-]*(\d{4})", raw_text)
+            if masked_match:
+                fields["last_four"] = masked_match.group(1)
+                fields["aadhaar_number"] = f"XXXX XXXX {masked_match.group(1)}"
+            else:
+                trailing = re.search(r"(?<!\d)(?:\d[\s-]*){8}(\d{4})(?!\d)", raw_text)
+                if trailing:
+                    fields["last_four"] = trailing.group(1)
+                    fields["aadhaar_number"] = f"XXXX XXXX {trailing.group(1)}"
 
+    # 2. Date of birth (DOB)
     dob_match = re.search(
-        r"(?:DOB|Date\s+of\s+Birth|Year\s+of\s+Birth|YOB)"
+        r"(?:DOB|Date\s+of\s+Birth|Year\s+of\s+Birth|YOB|DOB/Year|जन्म\s*तिथि)"
         r"\s*[:\-]?\s*"
         r"(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4}|\d{4})",
         raw_text,
@@ -227,36 +240,68 @@ def parse_aadhaar_fields(raw_text: str) -> dict:
     )
     if dob_match:
         fields["dob"] = dob_match.group(1)
+    else:
+        date_pattern = re.search(r"\b(\d{2}[/.\-]\d{2}[/.\-]\d{4})\b", raw_text)
+        if date_pattern:
+            fields["dob"] = date_pattern.group(1)
 
+    # 3. Gender
     gender_match = re.search(
-        r"\b(Male|Female|Transgender)\b",
+        r"\b(Male|Female|Transgender|MALE|FEMALE|पुरुष|महिला)\b",
         raw_text,
         re.IGNORECASE,
     )
     if gender_match:
-        fields["gender"] = gender_match.group(1).capitalize()
+        val = gender_match.group(1).lower()
+        if "fem" in val or "महि" in val:
+            fields["gender"] = "Female"
+        elif "male" in val or "पुरु" in val:
+            fields["gender"] = "Male"
+        else:
+            fields["gender"] = "Transgender"
 
+    # 4. Phone number if present
+    phone_match = re.search(r"(?:Mobile|Mob|Phone|Tel)?\s*[:\-]?\s*([6-9]\d{9})\b", raw_text)
+    if phone_match:
+        fields["phone"] = phone_match.group(1)
+
+    # 5. Name
     excluded = (
         "government of india", "unique identification",
         "authority of india", "aadhaar", "aadhar", "uidai",
         "date of birth", "dob", "year of birth", "male",
         "female", "address", "enrolment", "enrollment",
-        "download", "help",
+        "download", "help", "mera aadhaar", "meri pehchan",
+        "yob", "father", "mother", "husband", "wife",
+        "s/o", "d/o", "w/o", "c/o"
     )
 
-    for line in lines:
-        if any(word in line.lower() for word in excluded):
-            continue
-        if re.search(r"\d", line):
-            continue
-        cleaned = re.sub(r"[^A-Za-z .'-]", "", line).strip(" .'-")
-        words = cleaned.split()
-        if 2 <= len(words) <= 5 and all(
-            re.fullmatch(r"[A-Za-z][A-Za-z.'-]*", word)
-            for word in words
-        ):
-            fields["name"] = cleaned
-            break
+    # Prioritize line directly preceding the DOB line
+    for i, line in enumerate(lines):
+        if re.search(r"(?:DOB|Date\s+of\s+Birth|Year\s+of\s+Birth)", line, re.IGNORECASE) and i > 0:
+            candidate = lines[i - 1]
+            candidate = re.sub(r"(?i)\bbeneficiary(?:\s+name)?\b", "", candidate).strip()
+            if not any(w in candidate.lower() for w in excluded) and not re.search(r"\d", candidate):
+                cleaned = re.sub(r"[^A-Za-z .'-]", "", candidate).strip(" .'-")
+                if 2 <= len(cleaned.split()) <= 5:
+                    fields["name"] = cleaned
+                    break
+
+    if not fields["name"]:
+        for line in lines:
+            if any(word in line.lower() for word in excluded):
+                continue
+            if re.search(r"\d", line):
+                continue
+            line_cleaned = re.sub(r"(?i)\bbeneficiary(?:\s+name)?\b", "", line).strip()
+            cleaned = re.sub(r"[^A-Za-z .'-]", "", line_cleaned).strip(" .'-")
+            words = cleaned.split()
+            if 2 <= len(words) <= 5 and all(
+                re.fullmatch(r"[A-Za-z][A-Za-z.'-]*", word)
+                for word in words
+            ):
+                fields["name"] = cleaned
+                break
 
     return fields
 
@@ -322,7 +367,6 @@ async def extract_aadhaar(file: UploadFile = File(...)):
     })
 
 
->>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
 @app.post("/extract")
 async def extract(file: UploadFile = File(...)):
 

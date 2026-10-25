@@ -28,11 +28,20 @@ public class AadhaarController {
     )
     public Map<String, Object> extract(
             @RequestParam("file") MultipartFile file) {
-
-        // Keep this endpoint authenticated, like the protected
-        // Ayushman extraction endpoint.
         auth.currentUser();
+        return processExtraction(file);
+    }
 
+    @PostMapping(
+        value = "/extract-public",
+        consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    )
+    public Map<String, Object> extractPublic(
+            @RequestParam("file") MultipartFile file) {
+        return processExtraction(file);
+    }
+
+    private Map<String, Object> processExtraction(MultipartFile file) {
         if (file == null || file.isEmpty()) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Please upload an image.");

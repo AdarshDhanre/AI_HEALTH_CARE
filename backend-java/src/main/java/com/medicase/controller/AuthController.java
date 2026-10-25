@@ -23,4 +23,9 @@ public class AuthController {
     public AuthResponse login(@Valid @RequestBody LoginRequest req) {
         return auth.login(req);
     }
+
+    @PostMapping("/aadhaar-otp-login")
+    public AuthResponse aadhaarOtpLogin(@Valid @RequestBody com.medicase.dto.request.AadhaarLoginRequest req) {
+        return auth.loginWithAadhaarOtp(req);
+    }
 }

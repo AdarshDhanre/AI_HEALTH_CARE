@@ -93,15 +93,11 @@ def extract_report_date(text: str) -> Optional[str]:
                         else (int(m.group(3)), int(m.group(2)), int(m.group(1)))
                     candidates.append(date(y, mo, d))
                 except ValueError:
-<<<<<<< HEAD
                     if kind == "dmy":
                         try:
                             candidates.append(date(int(m.group(3)), int(m.group(1)), int(m.group(2))))
                         except ValueError:
                             pass
-=======
-                    pass
->>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
     return max(candidates).isoformat() if candidates else None
 
 

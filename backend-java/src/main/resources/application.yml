@@ -46,3 +46,12 @@ medicase:
   ayushman:
     ocr-url: ${AYUSHMAN_OCR_URL:http://127.0.0.1:8001}
     timeout-seconds: 60
+  cashfree:
+    base-url: ${CASHFREE_BASE_URL:https://sandbox.cashfree.com/verification}
+    client-id: ${CASHFREE_CLIENT_ID:}
+    client-secret: ${CASHFREE_CLIENT_SECRET:}
+
+cashfree:
+  base-url: ${CASHFREE_BASE_URL:https://sandbox.cashfree.com/verification}
+  client-id: ${CASHFREE_CLIENT_ID:}
+  client-secret: ${CASHFREE_CLIENT_SECRET:}

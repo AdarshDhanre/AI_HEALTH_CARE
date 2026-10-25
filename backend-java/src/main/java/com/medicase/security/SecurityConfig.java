@@ -30,7 +30,13 @@ public class SecurityConfig {
             .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
             .authorizeHttpRequests(a -> a
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers("/api/auth/**", "/api/ayushman/extract-public", "/actuator/health").permitAll()
+                .requestMatchers(
+                    "/api/auth/**",
+                    "/api/ayushman/extract-public",
+                    "/api/aadhaar/extract-public",
+                    "/api/verification/**",
+                    "/actuator/health"
+                ).permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 .requestMatchers("/api/research/**").hasAnyRole("RESEARCHER", "ADMIN")
                 .anyRequest().authenticated())

@@ -18,11 +18,12 @@ export function AuthProvider({ children }) {
 
   const login = useCallback((body) => authService.login(body).then(store), [store])
   const signup = useCallback((body) => authService.register(body).then(store), [store])
+  const loginWithAadhaar = useCallback((body) => authService.aadhaarOtpLogin(body).then(store), [store])
   const logout = useCallback(() => {
     try { localStorage.removeItem('token'); localStorage.removeItem('user') } catch { /* ignore */ }
     setUser(null)
   }, [])
 
-  const value = useMemo(() => ({ user, login, signup, logout }), [user, login, signup, logout])
+  const value = useMemo(() => ({ user, login, signup, loginWithAadhaar, logout }), [user, login, signup, loginWithAadhaar, logout])
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

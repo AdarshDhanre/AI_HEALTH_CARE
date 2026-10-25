@@ -9,7 +9,14 @@ export function useReports(patientId) {
 
   const refresh = useCallback(() => {
     setLoading(true)
-    return listReports(patientId).then(setReports).catch((e) => setError(errMsg(e))).finally(() => setLoading(false))
+    setError(null)
+    return listReports(patientId)
+      .then(setReports)
+      .catch((e) => {
+        setReports([])
+        setError(errMsg(e))
+      })
+      .finally(() => setLoading(false))
   }, [patientId])
 
   useEffect(() => { refresh() }, [refresh])

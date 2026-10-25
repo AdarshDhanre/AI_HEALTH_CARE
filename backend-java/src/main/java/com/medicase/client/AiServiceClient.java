@@ -70,7 +70,6 @@ public class AiServiceClient {
                 "results", results));
     }
 
-<<<<<<< HEAD
     public Map<String, Object> predictRisk(Map<String, Object> request) {
         return post("/predict-risk", request);
     }
@@ -79,8 +78,6 @@ public class AiServiceClient {
         return post("/analyze-symptom-text", request);
     }
 
-=======
->>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
     private Map<String, Object> post(String uri, Object body) {
         try {
             return web.post().uri(uri).bodyValue(body).retrieve().bodyToMono(MAP).block(timeout);

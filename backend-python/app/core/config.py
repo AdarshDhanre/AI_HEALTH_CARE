@@ -15,12 +15,8 @@ class Settings(BaseSettings):
     ocr_languages: str = "eng"
     max_upload_mb: int = 10
 
-<<<<<<< HEAD
     _backend_env = Path(__file__).resolve().parent.parent.parent / ".env"
     model_config = SettingsConfigDict(env_file=(_backend_env, ".env"), extra="ignore")
-=======
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
->>>>>>> ff871da8f6e96120dd0412c6ea2d9eca47d8db3c
 
 
 settings = Settings()
