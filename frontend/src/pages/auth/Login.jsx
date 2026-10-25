@@ -11,11 +11,12 @@ export default function Login() {
   const { login, loginWithAadhaar } = useAuth()
   const nav = useNavigate()
 
-  const [activeTab, setActiveTab] = useState('email') 
+  const [activeTab, setActiveTab] = useState('email') // 'email' | 'ayushman' | 'aadhaar'
   const [form, setForm] = useState({ email: '', password: '' })
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
 
+  // Ayushman Card Login state
   const [cardFile, setCardFile] = useState(null)
   const [cardBusy, setCardBusy] = useState(false)
   const [cardResult, setCardResult] = useState(null)
@@ -70,7 +71,6 @@ export default function Login() {
       const extracted = res.data?.extracted_fields
       if (extracted) {
         setCardResult(extracted)
-        // If a PM-JAY ID was found, suggest the standard email pattern or patient email
         if (extracted.pmjay_id) {
           const suggestedEmail = `patient_${extracted.pmjay_id.toLowerCase().replace(/[^a-z0-9]/g, '')}@ayushman.local`
           setForm((prev) => ({ ...prev, email: prev.email || suggestedEmail }))
@@ -96,6 +96,7 @@ export default function Login() {
     setBusy(true)
     setError(null)
 
+    // Attempt login with the card's email identifier and password
     const loginEmail = form.email || (cardResult.pmjay_id
       ? `patient_${cardResult.pmjay_id.toLowerCase().replace(/[^a-z0-9]/g, '')}@ayushman.local`
       : '')
@@ -147,7 +148,6 @@ export default function Login() {
 
       setAadhaarData(data)
 
-      // Automatically send OTP if Aadhaar number or phone is identified
       if (data.aadhaarNumber || data.phone) {
         sendAadhaarOtp(data.aadhaarNumber || data.phone)
       }
@@ -186,7 +186,6 @@ export default function Login() {
       })
 
       setOtpSent(true)
-      // Cashfree guidelines: allow ~45-50s before resending to avoid 409 conflict
       setOtpCountdown(45)
 
       const receivedRefId = res.data?.ref_id || res.data?.refId || ''
@@ -627,7 +626,7 @@ export default function Login() {
                       {busy ? (
                         <span>Authenticating...</span>
                       ) : (
-                        <span>🔐 Verify OTP & Sign In</span>
+                        <span>🔐 Verify OTP &amp; Sign In</span>
                       )}
                     </button>
                   </form>

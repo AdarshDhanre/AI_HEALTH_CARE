@@ -78,6 +78,26 @@ public class AiServiceClient {
         return post("/analyze-symptom-text", request);
     }
 
+    public Map<String, Object> createPatientInterviewSummary(Map<String, Object> request) {
+        return post("/patient-interview/summary", request);
+    }
+
+    public byte[] getTtsAudio(String text, String lang) {
+        try {
+            return web.get()
+                    .uri(uriBuilder -> uriBuilder
+                            .path("/tts")
+                            .queryParam("text", text)
+                            .queryParam("lang", lang != null ? lang : "hi")
+                            .build())
+                    .accept(MediaType.valueOf("audio/mpeg"))
+                    .retrieve()
+                    .bodyToMono(byte[].class)
+                    .block(timeout);
+        } catch (Exception e) {
+            throw new AiServiceException("TTS audio generation failed: " + e.getMessage(), e);
+        }
+    }
     private Map<String, Object> post(String uri, Object body) {
         try {
             return web.post().uri(uri).bodyValue(body).retrieve().bodyToMono(MAP).block(timeout);

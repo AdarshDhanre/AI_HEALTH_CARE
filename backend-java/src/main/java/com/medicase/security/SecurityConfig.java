@@ -35,7 +35,8 @@ public class SecurityConfig {
                     "/api/ayushman/extract-public",
                     "/api/aadhaar/extract-public",
                     "/api/verification/**",
-                    "/actuator/health"
+                    "/actuator/health",
+                    "/api/tts/**"
                 ).permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 .requestMatchers("/api/research/**").hasAnyRole("RESEARCHER", "ADMIN")

@@ -462,3 +462,6 @@ async def extract(file: UploadFile = File(...)):
         "raw_text": raw_text,
         "lines": labels
     })
+
+
+

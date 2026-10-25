@@ -35,6 +35,8 @@ export default function SymptomVoiceAnalyzer({ defaultLanguage = 'hi' }) {
 
   const recognitionRef = useRef(null)
   const isSpeakingRef = useRef(false)
+  const audioRef = useRef(null)
+  const audioUrlRef = useRef(null)
 
   // Load available speech synthesis voices
   useEffect(() => {
@@ -51,36 +53,59 @@ export default function SymptomVoiceAnalyzer({ defaultLanguage = 'hi' }) {
     }
 
     return () => {
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current = null
+      }
+      if (audioUrlRef.current) {
+        URL.revokeObjectURL(audioUrlRef.current)
+        audioUrlRef.current = null
+      }
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel()
       }
     }
   }, [])
 
-  // Find best matching voice for selected language
+  // Find best matching voice for selected language (never force an English voice onto Indian languages)
   const getBestVoice = useCallback((targetLang) => {
     if (!voices.length) return null
     const langInfo = SUPPORTED_LANGS[targetLang] || SUPPORTED_LANGS.hi
-    const fullCode = langInfo.code
+    const fullCode = langInfo.code.toLowerCase()
     const prefix = targetLang.toLowerCase()
 
-    // 1. Exact match (e.g. hi-IN, mr-IN, gu-IN)
-    let matched = voices.find((v) => v.lang.toLowerCase() === fullCode.toLowerCase())
-    // 2. Prefix match (e.g. hi, mr, gu, bn, ta)
+    // 1. Exact match (e.g. mr-IN, hi-IN, gu-IN, ta-IN)
+    let matched = voices.find((v) => v.lang.toLowerCase() === fullCode)
+    // 2. Prefix match (e.g. mr, hi, gu, bn, ta, te, kn, ml, pa, ur)
     if (!matched) {
       matched = voices.find((v) => v.lang.toLowerCase().startsWith(prefix))
     }
-    // 3. Any Indian voice if regional Indian language
-    if (!matched) {
-      matched = voices.find((v) => v.lang.toLowerCase().includes('in'))
+    // 3. Only if English is explicitly requested, allow any English voice
+    if (!matched && prefix === 'en') {
+      matched = voices.find((v) => v.lang.toLowerCase().startsWith('en'))
     }
-    return matched || voices[0] || null
+    // Return matched voice or null (do NOT fallback to voices[0] or English when Indian language is selected)
+    return matched || null
   }, [voices])
 
-  // Stop Doctor speech
+  // Stop Doctor speech (both audio player and Web Speech API)
   const stopDoctorSpeech = useCallback(() => {
-    if (!('speechSynthesis' in window)) return
-    window.speechSynthesis.cancel()
+    if (audioRef.current) {
+      try {
+        audioRef.current.pause()
+        audioRef.current.currentTime = 0
+      } catch (err) {
+        // ignore
+      }
+      audioRef.current = null
+    }
+    if (audioUrlRef.current) {
+      URL.revokeObjectURL(audioUrlRef.current)
+      audioUrlRef.current = null
+    }
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel()
+    }
     isSpeakingRef.current = false
     setIsSpeaking(false)
     setIsPaused(false)
@@ -88,6 +113,17 @@ export default function SymptomVoiceAnalyzer({ defaultLanguage = 'hi' }) {
 
   // Pause / Resume Doctor speech
   const togglePauseSpeech = useCallback(() => {
+    if (audioRef.current) {
+      if (isPaused) {
+        audioRef.current.play()
+        setIsPaused(false)
+      } else {
+        audioRef.current.pause()
+        setIsPaused(true)
+      }
+      return
+    }
+
     if (!('speechSynthesis' in window)) return
     if (isPaused) {
       window.speechSynthesis.resume()
@@ -98,27 +134,28 @@ export default function SymptomVoiceAnalyzer({ defaultLanguage = 'hi' }) {
     }
   }, [isPaused])
 
-  // Speak text as a real doctor with natural sentence pauses
-  const speakAsDoctor = useCallback((speechText, currentLang = lang) => {
-    if (!('speechSynthesis' in window)) return
-    stopDoctorSpeech()
+  // Browser Web Speech API fallback if backend audio is unavailable
+  const fallbackWebSpeech = useCallback((fullScript, currentLang) => {
+    if (!('speechSynthesis' in window)) {
+      setIsSpeaking(false)
+      setIsPaused(false)
+      isSpeakingRef.current = false
+      return
+    }
 
-    const fullScript = (speechText || '').trim()
-    if (!fullScript) return
-
-    // Split text into natural conversational chunks
     const sentences = fullScript
       .split(/(?<=[।!?.\n])\s+/)
       .map((s) => s.trim())
       .filter((s) => s.length > 0)
 
-    if (!sentences.length) return
+    if (!sentences.length) {
+      setIsSpeaking(false)
+      setIsPaused(false)
+      isSpeakingRef.current = false
+      return
+    }
 
     const selectedVoice = getBestVoice(currentLang)
-    isSpeakingRef.current = true
-    setIsSpeaking(true)
-    setIsPaused(false)
-
     let index = 0
 
     const speakNext = () => {
@@ -133,7 +170,9 @@ export default function SymptomVoiceAnalyzer({ defaultLanguage = 'hi' }) {
       index++
 
       const utterance = new SpeechSynthesisUtterance(textChunk)
-      if (selectedVoice) utterance.voice = selectedVoice
+      if (selectedVoice) {
+        utterance.voice = selectedVoice
+      }
       utterance.lang = selectedVoice?.lang || SUPPORTED_LANGS[currentLang]?.code || 'hi-IN'
       utterance.rate = speechSpeed
       utterance.pitch = 1.0
@@ -155,7 +194,52 @@ export default function SymptomVoiceAnalyzer({ defaultLanguage = 'hi' }) {
     }
 
     speakNext()
-  }, [lang, speechSpeed, getBestVoice, stopDoctorSpeech])
+  }, [getBestVoice, speechSpeed])
+
+  // Speak text as a real doctor with authentic native Indian voice
+  const speakAsDoctor = useCallback(async (speechText, currentLang = lang) => {
+    stopDoctorSpeech()
+
+    const fullScript = (speechText || '').trim()
+    if (!fullScript) return
+
+    isSpeakingRef.current = true
+    setIsSpeaking(true)
+    setIsPaused(false)
+
+    // Primary: High-fidelity native Indian voice TTS stream from backend
+    try {
+      const blob = await riskService.getTtsAudio(fullScript, currentLang)
+      if (!isSpeakingRef.current) return // User stopped before audio downloaded
+
+      const audioUrl = URL.createObjectURL(blob)
+      audioUrlRef.current = audioUrl
+      const audio = new Audio(audioUrl)
+      audio.playbackRate = speechSpeed
+      audioRef.current = audio
+
+      audio.onended = () => {
+        if (audioUrlRef.current) {
+          URL.revokeObjectURL(audioUrlRef.current)
+          audioUrlRef.current = null
+        }
+        audioRef.current = null
+        setIsSpeaking(false)
+        setIsPaused(false)
+        isSpeakingRef.current = false
+      }
+
+      audio.onerror = (e) => {
+        console.warn('Audio element error, falling back to Web Speech API:', e)
+        fallbackWebSpeech(fullScript, currentLang)
+      }
+
+      await audio.play()
+    } catch (err) {
+      console.warn('Backend TTS failed, falling back to Web Speech API:', err)
+      fallbackWebSpeech(fullScript, currentLang)
+    }
+  }, [lang, speechSpeed, stopDoctorSpeech, fallbackWebSpeech])
 
   // Auto-speak when result arrives
   useEffect(() => {
@@ -420,7 +504,11 @@ export default function SymptomVoiceAnalyzer({ defaultLanguage = 'hi' }) {
 
               <select
                 value={speechSpeed}
-                onChange={(e) => setSpeechSpeed(parseFloat(e.target.value))}
+                onChange={(e) => {
+                  const val = parseFloat(e.target.value)
+                  setSpeechSpeed(val)
+                  if (audioRef.current) audioRef.current.playbackRate = val
+                }}
                 className="rounded-lg border border-slate-200 bg-slate-50 px-2 py-1.5 text-xs text-slate-600 focus:outline-none"
               >
                 <option value="0.85">0.85x Calm Doctor</option>
